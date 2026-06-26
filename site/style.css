@@ -1,0 +1,178 @@
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter Tight', sans-serif;
+    min-height: 100vh;
+    color: #2b2545;
+    transition: background 0.7s ease, color 0.7s ease;
+}
+
+/* ---- Theme gradients ---- */
+body.theme-math {
+    background: linear-gradient(135deg, #d9c6f5 0%, #f1c3f7 45%, #9ee2eb 100%);
+    color: #493e77;
+}
+
+body.theme-trading {
+    background: linear-gradient(135deg, #b4e0bf 0%, #6ec492 40%, #32aa64c2 60%, #037551 100%);
+    color: #000000;
+}
+
+/* ---- Layout ---- */
+.page {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 40px;
+}
+
+.brand {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* ---- Tabs ---- */
+.tabs {
+    position: relative;
+    display: flex;
+    gap: 0;
+    padding: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.tab {
+    position: relative;
+    z-index: 2;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 22px;
+    border-radius: 999px;
+    color: rgba(40, 40, 50, 0.6);
+    transition: color 0.3s ease;
+}
+
+.tab.is-active { color: #5b3fa8; }
+body.theme-trading .tab.is-active { color: #1a6b46; }
+
+/* Sliding white pill behind the active tab */
+.tab-pill {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 5px;
+    height: calc(100% - 10px);
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1), width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ---- Main content ---- */
+.main {
+    padding: 40px 40px 100px;
+    transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.main.is-leaving {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.main.is-entering {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.kicker {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 14px;
+}
+
+.headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin: 0 0 22px;
+    max-width: 16ch;
+}
+
+.blurb {
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 54ch;
+    opacity: 0.75;
+    margin: 0 0 48px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    padding: 26px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    /* staggered entrance */
+    animation: cardIn 0.5s ease both;
+}
+
+.card-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.card-body {
+    font-size: 15px;
+    line-height: 1.5;
+    opacity: 0.7;
+}
+
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+    .header { flex-direction: column; gap: 18px; padding: 24px; }
+    .main { padding: 24px 24px 80px; }
+}
