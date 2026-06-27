@@ -10,14 +10,24 @@ body {
 }
 
 /* ---- Theme gradients ---- */
+body.theme-about {
+    background: linear-gradient(135deg, #ffe8cc 0%, #ffd0a6 40%, #d39957 70%, #b86d4f 100%);
+    color: #5a3826;
+}
+
 body.theme-math {
-    background: linear-gradient(135deg, #d9c6f5 0%, #f1c3f7 45%, #9ee2eb 100%);
+    background: linear-gradient(135deg, #e2d8f0 0%, #daabe0 35%, #8beffc 100%);
     color: #493e77;
 }
 
 body.theme-trading {
-    background: linear-gradient(135deg, #b4e0bf 0%, #6ec492 40%, #32aa64c2 60%, #037551 100%);
+    background: linear-gradient(135deg, #d5ffe0 0%, #99ffc3 50%, #85fd85 100%);
     color: #000000;
+}
+
+body.theme-random {
+    background: linear-gradient(135deg, #dde6ff 0%, #bcc9ff 40%, #9aa6f4 70%, #6b71de 100%);
+    color: #2c2a63;
 }
 
 /* ---- Layout ---- */
@@ -45,7 +55,7 @@ body.theme-trading {
     position: relative;
     display: flex;
     gap: 0;
-    padding: 7px;
+    padding: 8px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.45);
     backdrop-filter: blur(8px);
@@ -61,7 +71,7 @@ body.theme-trading {
     font-family: 'Inter Tight', sans-serif;
     font-size: 15px;
     font-weight: 500;
-    padding: 8px 22px;
+    padding: 8px 24px;
     border-radius: 999px;
     color: rgba(40, 40, 50, 0.6);
     transition: color 0.3s ease;
@@ -69,6 +79,8 @@ body.theme-trading {
 
 .tab.is-active { color: #5b3fa8; }
 body.theme-trading .tab.is-active { color: #1a6b46; }
+body.theme-about .tab.is-active { color: #b5642f; }
+body.theme-random .tab.is-active { color: #4f46c9; }
 
 /* Sliding white pill behind the active tab */
 .tab-pill {
@@ -87,6 +99,14 @@ body.theme-trading .tab.is-active { color: #1a6b46; }
 .main {
     padding: 40px 40px 100px;
     transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.section-content {
+    display: none;
+}
+
+.section-content.is-active {
+    display: block;
 }
 
 .main.is-leaving {
@@ -110,7 +130,7 @@ body.theme-trading .tab.is-active { color: #1a6b46; }
 
 .headline {
     font-family: 'Fraunces', serif;
-    font-size: clamp(40px, 7vw, 76px);
+    font-size: clamp(40px, 8vw, 76px);
     font-weight: 500;
     line-height: 1.04;
     letter-spacing: -0.02em;
@@ -121,15 +141,15 @@ body.theme-trading .tab.is-active { color: #1a6b46; }
 .blurb {
     font-size: 19px;
     line-height: 1.6;
-    max-width: 54ch;
-    opacity: 0.75;
+    max-width: 72ch;
+    opacity: 0.8;
     margin: 0 0 48px;
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 18px;
+    gap: 20px;
 }
 
 .card {
@@ -149,6 +169,10 @@ body.theme-trading .tab.is-active { color: #1a6b46; }
     color: inherit;
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+article.card {
+    cursor: default;
 }
 
 .card:hover {
