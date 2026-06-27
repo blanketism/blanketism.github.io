@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummit and Foote Solutions</title>
+    <meta name="description" content="Embedded PDF viewer for Dummit and Foote Abstract Algebra exercise solutions.">
+    <style>
+        :root {
+            --bg: #f7f5ef;
+            --panel: #fffdf7;
+            --text: #26231f;
+            --muted: #6c655c;
+            --accent: #2c5f4f;
+            --border: #d8d1c8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 10%, #fff8e6, var(--bg) 45%);
+            color: var(--text);
+            font-family: "Inter Tight", "Segoe UI", sans-serif;
+        }
+
+        .shell {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--panel);
+        }
+
+        .title {
+            margin: 0;
+            font-size: 1.15rem;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .viewer {
+            width: 100%;
+            height: calc(100vh - 130px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .viewer iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .fallback {
+            margin-top: 0.75rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 720px) {
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .viewer {
+                height: calc(100vh - 170px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <header class="topbar">
+            <h1 class="title">Dummit and Foote Solutions</h1>
+            <nav class="actions" aria-label="Page actions">
+                <a class="link" href="index.html">Back to Home</a>
+                <a class="link" href="pdfs/dummit_foote_exercises.pdf" target="_blank" rel="noopener">Open PDF in new tab</a>
+            </nav>
+        </header>
+
+        <section class="viewer" aria-label="Embedded PDF viewer">
+            <iframe
+                src="pdfs/dummit_foote_exercises.pdf#view=FitH"
+                title="Dummit and Foote exercise solutions PDF"
+            ></iframe>
+        </section>
+
+        <p class="fallback">
+            If the document does not load in your browser, use
+            <a class="link" href="pdfs/dummit_foote_exercises.pdf" target="_blank" rel="noopener">this direct PDF link</a>.
+        </p>
+    </main>
+</body>
+</html>
