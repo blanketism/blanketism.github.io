@@ -6,8 +6,8 @@ const CONTENT = {
         headline: 'My Mathematical Journey',
         blurb: 'Basic blurb text about the math section. This is a placeholder for now, but it will be replaced with something more meaningful later.',
         cards: [
-            { tag: 'Readings', title: 'Book list', body: 'Books I\'ve read, am reading, or plan to read.' },
-            { tag: 'Courses', title: 'Course list', body: 'Courses I\'ve taken during my time in school.' },
+            { tag: 'Readings', title: 'Book list', body: 'Books I\'ve read, am reading, or plan to read.', slug: 'pages/math-books.html' },
+            { tag: 'Courses', title: 'Course list', body: 'Courses I\'ve taken during my time in school.', slug: 'pages/math-courses.html' },
         ],
     },
     trading: {
@@ -16,8 +16,8 @@ const CONTENT = {
         headline: 'Some trading stuff',
         blurb: 'I don\'t really know what to put here yet, but I\'ll figure it out eventually. For now, this is just a placeholder.',
         cards: [
-            { tag: 'Market Basics', title: 'Financial derivatives', body: 'A brief overview of financial derivatives and their role in the market.' },
-            { tag: 'Trading Strategies', title: 'My trading strategies', body: 'A collection of my personal trading strategies and insights.' },
+            { tag: 'Market Basics', title: 'Financial derivatives', body: 'A brief overview of financial derivatives and their role in the market.', slug: 'pages/trading-derivatives.html' },
+            { tag: 'Trading Strategies', title: 'My trading strategies', body: 'A collection of my personal trading strategies and insights.', slug: 'pages/trading-strategies.html' },
         ],
     },
 };
@@ -32,11 +32,12 @@ let current = null;
 function renderContent(key) {
     const c = CONTENT[key];
     const cards = c.cards.map((card, i) => `
-        <div class="card" style="animation-delay: ${0.08 + i * 0.07}s">
+        <a class="card" href="${card.slug}" style="animation-delay: ${0.08 + i * 0.07}s">
             <div class="card-tag">${card.tag}</div>
             <div class="card-title">${card.title}</div>
             <div class="card-body">${card.body}</div>
-        </div>`).join('');
+            <span class="card-arrow" aria-hidden="true">\u2192</span>
+        </a>`).join('');
 
     main.innerHTML = `
         <div class="kicker">${c.kicker}</div>
