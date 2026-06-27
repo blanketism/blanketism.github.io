@@ -1,49 +1,38 @@
-// ---- Content for each tab ----
-const CONTENT = {
-    math: {
-        theme: 'theme-math',
-        kicker: 'Mathematics',
-        headline: 'My Mathematical Journey',
-        blurb: 'Basic blurb text about the math section. This is a placeholder for now, but it will be replaced with something more meaningful later.',
-        cards: [
-            { tag: 'Readings', title: 'Book list', body: 'Books I\'ve read, am reading, or plan to read.', slug: 'pages/math-books.html' },
-            { tag: 'Courses', title: 'Course list', body: 'Courses I\'ve taken during my time in school.', slug: 'pages/math-courses.html' },
-        ],
-    },
-    trading: {
-        theme: 'theme-trading',
-        kicker: 'Trading',
-        headline: 'Some trading stuff',
-        blurb: 'I don\'t really know what to put here yet, but I\'ll figure it out eventually. For now, this is just a placeholder.',
-        cards: [
-            { tag: 'Market Basics', title: 'Financial derivatives', body: 'A brief overview of financial derivatives and their role in the market.', slug: 'pages/trading-derivatives.html' },
-            { tag: 'Trading Strategies', title: 'My trading strategies', body: 'A collection of my personal trading strategies and insights.', slug: 'pages/trading-strategies.html' },
-        ],
-    },
+const THEMES = {
+    about: 'theme-about',
+    math: 'theme-math',
+    trading: 'theme-trading',
+    random: 'theme-random',
 };
 
 const body = document.body;
 const main = document.getElementById('main');
 const tabs = Array.from(document.querySelectorAll('.tab'));
+const sections = Array.from(document.querySelectorAll('.section-content'));
 const pill = document.querySelector('.tab-pill');
 
 let current = null;
 
-function renderContent(key) {
-    const c = CONTENT[key];
-    const cards = c.cards.map((card, i) => `
-        <a class="card" href="${card.slug}" style="animation-delay: ${0.08 + i * 0.07}s">
-            <div class="card-tag">${card.tag}</div>
-            <div class="card-title">${card.title}</div>
-            <div class="card-body">${card.body}</div>
-            <span class="card-arrow" aria-hidden="true">\u2192</span>
-        </a>`).join('');
+function showSection(key) {
+    sections.forEach((section) => {
+        section.classList.toggle('is-active', section.dataset.section === key);
+    });
 
-    main.innerHTML = `
-        <div class="kicker">${c.kicker}</div>
-        <h1 class="headline">${c.headline}</h1>
-        <p class="blurb">${c.blurb}</p>
-        <div class="cards">${cards}</div>`;
+    const activeSection = sections.find((section) => section.dataset.section === key);
+    if (!activeSection) return;
+
+    // restart card entrance animation for the newly active section
+    activeSection.querySelectorAll('.card').forEach((card, i) => {
+        card.style.animation = 'none';
+        card.offsetHeight;
+        card.style.animation = '';
+        card.style.animationDelay = `${0.08 + i * 0.07}s`;
+    });
+
+    // typeset math in the visible section
+    if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([activeSection]).catch(() => {});
+    }
 }
 
 function movePill(activeTab) {
@@ -53,17 +42,23 @@ function movePill(activeTab) {
 
 function switchTo(key, instant) {
     if (key === current) return;
+    if (!THEMES[key]) return;
+
+    // reflect the active section in the URL so detail pages can return here
+    if (history.replaceState) {
+        history.replaceState(null, '', '#' + key);
+    }
 
     // update theme + tab states
-    body.classList.remove('theme-math', 'theme-trading');
-    body.classList.add(CONTENT[key].theme);
+    body.classList.remove('theme-math', 'theme-trading', 'theme-about', 'theme-random');
+    body.classList.add(THEMES[key]);
 
     const activeTab = tabs.find((t) => t.dataset.tab === key);
     tabs.forEach((t) => t.classList.toggle('is-active', t === activeTab));
     movePill(activeTab);
 
     if (instant) {
-        renderContent(key);
+        showSection(key);
         current = key;
         return;
     }
@@ -71,7 +66,7 @@ function switchTo(key, instant) {
     // animate out, swap, animate in
     main.classList.add('is-leaving');
     setTimeout(() => {
-        renderContent(key);
+        showSection(key);
         main.classList.remove('is-leaving');
         main.classList.add('is-entering');
         // next frame: release to enter
@@ -88,7 +83,11 @@ tabs.forEach((tab) => {
 
 // initial render
 window.addEventListener('load', () => {
-    const start = tabs.find((t) => t.classList.contains('is-active')) || tabs[0];
+    const fromHash = (location.hash || '').replace('#', '');
+    const startKey = THEMES[fromHash] ? fromHash : null;
+    const start = startKey
+        ? tabs.find((t) => t.dataset.tab === startKey)
+        : (tabs.find((t) => t.classList.contains('is-active')) || tabs[0]);
     movePill(start);
     switchTo(start.dataset.tab, true);
 });

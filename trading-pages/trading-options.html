@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options Trading - blanketism</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="theme-trading">
+    <div class="page">
+        <header class="header">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <div class="brand">blanket's corner</div>
+            </a>
+        </header>
+
+        <main class="main">
+            <section class="section-content is-active">
+                <div class="kicker">Financial Derivatives</div>
+                <h1 class="headline">Options</h1>
+                <p class="blurb">Understandably so, options can be seen as complex financial instruments, but they are powerful financial tools for more advanced individuals. They offer flexibility, leveraged gains from speculative theses, and hedging capabilities in covered positions.</p>
+
+                <div class="detail-body">
+                    <h2>What Are Options?</h2>
+                    <p>An option is a financial derivative that gives the holder the right (but not the obligation) to buy or sell an underlying asset at a predetermined price, called the <strong>strike price</strong>, on or before a specified date, called the <strong>expiration date</strong>. The option buyer pays a premium to the seller for this right.</p>
+                </div>
+
+                <div class="detail-body">
+                    <h2>Types of Options</h2>
+                    <p>There are two main categories of options:</p>
+                    
+                    <h3>Call Options</h3>
+                    <p>A call option gives the holder the right to <strong>buy</strong> the underlying asset at the strike price. Buyers profit when the asset price rises above the strike price plus the premium paid. A call option's value increases as the price of the underlying asset increases.</p>
+                    <p><strong>Profit at expiration:</strong> $\max(S - K, 0) - C$</p>
+                    <p>where $S$ = spot price, $K$ = strike price, $C$ = premium paid</p>
+
+                    <h3>Put Options</h3>
+                    <p>A put option gives the holder the right to <strong>sell</strong> the underlying asset at the strike price. Buyers profit when the asset price falls below the strike price minus the premium paid. A put option's value increases as the price of the underlying asset decreases.</p>
+                    <p><strong>Profit at expiration:</strong> $\max(K - S, 0) - P$</p>
+                    <p>where $P$ = premium paid</p>
+                </div>
+
+                <div class="detail-body">
+                    <h2>Option Styles</h2>
+                    
+                    <h3>American Options</h3>
+                    <p>Can be exercised at any time before or on the expiration date. This flexibility makes American options more valuable than European options. Most equity options traded in the U.S. are American style.</p>
+
+                    <h3>European Options</h3>
+                    <p>Can only be exercised on the expiration date, not before. These are more common in certain markets and are easier to price analytically using the Black-Scholes model.</p>
+                </div>
+
+                <div class="detail-body">
+                    <h2>Key Concepts</h2>
+                    
+                    <h3>Moneyness</h3>
+                    <ul>
+                        <li><strong>In-the-Money (ITM):</strong> Has intrinsic value. Call: $S > K$; Put: $S < K$</li>
+                        <li><strong>At-the-Money (ATM):</strong> Strike price equals current spot price ($S = K$)</li>
+                        <li><strong>Out-of-the-Money (OTM):</strong> Has no intrinsic value. Call: $S < K$; Put: $S > K$</li>
+                    </ul>
+
+                    <h3>Time Value</h3>
+                    <p>The portion of an option's premium that exceeds its intrinsic value. Time value decreases as the expiration date approaches (time decay). Options further from expiration have greater time value.</p>
+
+                    <h3>Greeks</h3>
+                    <p>Measures of sensitivity used to manage option positions:</p>
+                    <ul>
+                        <li><strong>Delta ($\Delta$):</strong> Change in option price for a $1 change in underlying asset price. Range: 0 to 1 for calls, -1 to 0 for puts.</li>
+                        <li><strong>Gamma ($\Gamma$):</strong> Rate of change of delta. Higher gamma means delta changes more rapidly with price movements.</li>
+                        <li><strong>Theta ($\Theta$):</strong> Time decay - daily loss in option value as expiration approaches, all else equal. Generally negative for long options.</li>
+                        <li><strong>Vega ($\nu$):</strong> Sensitivity to changes in implied volatility. Positive for both calls and puts.</li>
+                        <li><strong>Rho ($\rho$):</strong> Sensitivity to changes in interest rates.</li>
+                    </ul>
+                </div>
+
+                <div class="detail-body">
+                    <h2>Basic Trading Strategies</h2>
+                    
+                    <h3>Long Call</h3>
+                    <p>Buy a call option. Maximum profit is unlimited, maximum loss is the premium paid. Used when bullish on the underlying asset.</p>
+
+                    <h3>Long Put</h3>
+                    <p>Buy a put option. Maximum profit is the strike price minus premium paid, maximum loss is the premium paid. Used when bearish on the underlying asset.</p>
+
+                    <h3>Covered Call</h3>
+                    <p>Own the underlying asset and sell a call option. The premium collected reduces your cost basis, but caps upside potential. Lower risk than naked call selling.</p>
+
+                    <h3>Protective Put (Married Put)</h3>
+                    <p>Own the underlying asset and buy a put option. Functions like insurance, limiting downside losses while maintaining upside participation.</p>
+
+                    <h3>Bull Call Spread</h3>
+                    <p>Buy a call at a lower strike and sell a call at a higher strike. Limited profit, but lower cost than buying the call outright.</p>
+
+                    <h3>Bear Put Spread</h3>
+                    <p>Sell a put at a higher strike and buy a put at a lower strike. Limited profit (premium collected), limited loss (difference between strikes minus premium).</p>
+                </div>
+
+                <div class="detail-body">
+                    <h2>Factors Affecting Option Prices</h2>
+                    <ul>
+                        <li><strong>Underlying Asset Price:</strong> Directly affects intrinsic value</li>
+                        <li><strong>Strike Price:</strong> Higher strikes decrease call values and increase put values</li>
+                        <li><strong>Time to Expiration:</strong> Generally increases option value due to more time for favorable moves</li>
+                        <li><strong>Volatility:</strong> Higher volatility increases option values (more chance of large moves)</li>
+                        <li><strong>Interest Rates:</strong> Higher rates increase call values and decrease put values slightly</li>
+                        <li><strong>Dividends:</strong> Lower expected call values, higher expected put values</li>
+                    </ul>
+                </div>
+
+                <div class="detail-body">
+                    <h2>Risk Considerations</h2>
+                    <p>Options trading involves significant risk and is not suitable for all investors. Key risks include:</p>
+                    <ul>
+                        <li><strong>Total Loss:</strong> Long option buyers can lose the entire premium if the position expires worthless</li>
+                        <li><strong>Unlimited Loss (Short Options):</strong> Sellers of naked calls face unlimited loss potential</li>
+                        <li><strong>Liquidity Risk:</strong> Some options have low trading volume, making it difficult to enter/exit positions</li>
+                        <li><strong>Volatility Risk:</strong> Rapid changes in implied volatility can significantly impact option values</li>
+                        <li><strong>Leverage Risk:</strong> Small option premiums control large asset amounts, amplifying gains and losses</li>
+                    </ul>
+                </div>
+
+                <div class="detail-body">
+                    <p style="font-size: 0.9em; font-style: italic; color: rgba(0, 0, 0, 0.7);">Disclaimer: This information is for educational purposes only and should not be considered as financial advice. Always consult with a qualified financial advisor before trading options.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
