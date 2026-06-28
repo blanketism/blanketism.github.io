@@ -11,23 +11,23 @@ body {
 
 /* ---- Theme gradients ---- */
 body.theme-about {
-    background: linear-gradient(135deg, #ffe8cc 0%, #ffd0a6 40%, #d39957 70%, #b86d4f 100%);
-    color: #5a3826;
+    background: linear-gradient(135deg, #ffccb3 0%, #ffc4c7 35%, #ffb3d9 70%, #ffb3e6 100%);
+    color: #5E1C45ED;
 }
 
 body.theme-math {
     background: linear-gradient(135deg, #e2d8f0 0%, #daabe0 35%, #8beffc 100%);
-    color: #493e77;
+    color: #662a81f5;
 }
 
 body.theme-trading {
-    background: linear-gradient(135deg, #d5ffe0 0%, #99ffc3 50%, #85fd85 100%);
-    color: #000000;
+    background: linear-gradient(135deg, #f99b8a 0%, #e4b182 25%, #cfc67a 50%, #b9db72 75%, #a4f16a 100%);
+    color: #0b502de0;
 }
 
 body.theme-random {
-    background: linear-gradient(135deg, #dde6ff 0%, #bcc9ff 40%, #9aa6f4 70%, #6b71de 100%);
-    color: #2c2a63;
+    background: linear-gradient(135deg, #b3e5fc 0%, #fff9c4 100%);
+    color: #06426b9f;
 }
 
 /* ---- Layout ---- */
