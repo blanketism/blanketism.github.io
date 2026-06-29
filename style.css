@@ -22,7 +22,7 @@ body.theme-math {
 
 body.theme-trading {
     background: linear-gradient(135deg, #f99b8a 0%, #e4b182 25%, #cfc67a 50%, #b9db72 75%, #a4f16a 100%);
-    color: #0b502de0;
+    color: #0a492b;
 }
 
 body.theme-random {
@@ -80,7 +80,7 @@ body.theme-random {
 .tab.is-active { color: #5b3fa8; }
 body.theme-trading .tab.is-active { color: #1a6b46; }
 body.theme-about .tab.is-active { color: #b5642f; }
-body.theme-random .tab.is-active { color: #4f46c9; }
+body.theme-random .tab.is-active { color: #5d8d9c; }
 
 /* Sliding white pill behind the active tab */
 .tab-pill {
@@ -286,4 +286,185 @@ article.card {
     .header { flex-direction: column; gap: 18px; padding: 24px; }
     .main { padding: 24px 24px 80px; }
     .detail { padding: 16px 24px 90px; }
+}
+
+/* ---- Rudin chapter accordion ---- */
+.chapter-wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 10px 40px 100px;
+}
+
+.chapter-intro {
+    margin: 0 0 34px;
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.82;
+    max-width: 76ch;
+}
+
+.theorem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.theorem-card {
+    width: 100%;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.theorem-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
+}
+
+.theorem-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    padding: 22px 24px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.theorem-toggle-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.theorem-toggle-subtitle {
+    margin: 8px 0 0;
+    font-size: 18px;
+    line-height: 1.6;
+    opacity: 0.82;
+}
+
+.theorem-chevron {
+    flex: 0 0 auto;
+    font-size: 20px;
+    opacity: 0.65;
+    transform: rotate(0deg);
+    transition: transform 0.25s ease;
+}
+
+.theorem-card.is-open .theorem-chevron {
+    transform: rotate(90deg);
+}
+
+.theorem-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.theorem-panel-inner {
+    padding: 6px 24px 24px;
+}
+
+.theorem-block {
+    border-radius: 12px;
+    padding: 16px 16px 14px;
+}
+
+.theorem-block + .theorem-block {
+    margin-top: 14px;
+}
+
+.theorem-block-statement {
+    border-left: 4px solid rgba(102, 42, 129, 0.55);
+    background: rgba(255, 255, 255, 0.58);
+}
+
+.theorem-block-proof {
+    border: none;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+}
+
+.theorem-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+.theorem-block-statement .theorem-label {
+    opacity: 0.75;
+}
+
+.theorem-block-proof .theorem-label {
+    opacity: 0.55;
+}
+
+.theorem-text {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.theorem-proof p {
+    margin: 0 0 14px;
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.86;
+}
+
+.theorem-proof p:last-child {
+    margin-bottom: 0;
+}
+
+.theorem-proof p:last-child::after {
+    content: '\25A0';
+    float: right;
+    font-size: 1.35em;
+    line-height: 1;
+    margin-left: 10px;
+    opacity: 0.95;
+}
+
+@media (max-width: 560px) {
+    .chapter-wrap {
+        padding: 8px 24px 84px;
+    }
+
+    .theorem-toggle {
+        padding: 18px;
+        gap: 14px;
+    }
+
+    .theorem-toggle-title {
+        font-size: 22px;
+    }
+
+    .theorem-toggle-subtitle {
+        margin-top: 6px;
+        font-size: 16px;
+    }
+
+    .theorem-panel-inner {
+        padding: 2px 18px 18px;
+    }
+
+    .theorem-block {
+        padding: 14px;
+    }
 }

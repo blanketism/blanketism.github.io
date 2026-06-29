@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rudin Chapter I - blanketism</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="theme-math">
+    <div class="page">
+        <header class="header">
+            <a href="../../index.html" style="text-decoration: none; color: inherit;">
+                <div class="brand">blanket's corner</div>
+            </a>
+            <a class="back-link" href="../rudin.html">&larr; Back to Rudin Chapters</a>
+        </header>
+
+        <main class="chapter-wrap">
+            <div class="kicker">Rudin, Chapter I</div>
+            <h1 class="headline">The Real and Complex Number Systems</h1>
+            <p class="chapter-intro">This section was, by far, the easiest section to understand in Rudin. Most of the things feel intuitive and straightforward, with the only big challenge being the construction of $\mathbb R$ from $\mathbb Q$ via Dedekind cuts.</p>
+
+            <section class="theorem-list" aria-label="Chapter I theorem proofs">
+                <article class="theorem-card">
+                    <button class="theorem-toggle" type="button" aria-expanded="false">
+                        <div>
+                            <h2 class="theorem-toggle-title">Theorem 1.20(b) - Density of $\mathbb Q$ in $\mathbb R$</h2>
+                            <p class="theorem-toggle-subtitle">If $x \in \mathbb R, y \in \mathbb R$, and $x < y$, then there exists a $p \in \mathbb Q$ such that $x < p < y$.
+                            </p>
+                        </div>
+                        <span class="theorem-chevron" aria-hidden="true">&#8250;</span>
+                    </button>
+                    <div class="theorem-panel" role="region" aria-hidden="true">
+                        <div class="theorem-panel-inner">
+                            <section class="theorem-block theorem-block-proof theorem-proof">
+                                <p class="theorem-label">Proof</p>
+                                <p>Since $x < y$, then $y - x > 0$. By the Archimedean property, there exists a positive integer $n$ such that
+                                \[n(y - x) > 1.\]
+                                We may use the Archimedean property again to obtain integers $s$ and $t$ such that $s < nx$ and $t < -nx$. It follows that
+                                \[-t < nx < s.\]
+                                Consider the set of integers between $-t$ and $s$. This is a finite subset of $\mathbb Z$, hence we may consider some $m$ such that $-t \leq m \leq s$, and
+                                \[m - 1 \leq nx < m.\]
+                                From the first inequality, we see that $nx + 1 < ny$. From the third inequality, adding $1$ to everything implies that $m \leq nx + 1$. This results in
+                                \[nx < m \leq nx + 1 < ny.\]
+                                Since $n$ is positive, we may divide by $n$ to obtain
+                                \[x < \frac{m}{n} < y.\]
+                                Since $m, n \in \mathbb Z$, then $m/n \in \mathbb Q$, and we have found a rational number between $x$ and $y$.</p>
+                            </section>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+</html>
