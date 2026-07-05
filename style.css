@@ -5,34 +5,59 @@ html, body { margin: 0; padding: 0; }
 body {
     font-family: 'Inter Tight', sans-serif;
     min-height: 100vh;
-    color: #2b2545;
+    color: var(--theme-text, #2b2545);
+    background: var(--theme-bg, #ffffff);
     transition: background 0.7s ease, color 0.7s ease;
 }
 
 /* ---- Theme gradients ---- */
 body.theme-about {
-    background: linear-gradient(135deg, #ffccb3 0%, #ffc4c7 35%, #ffb3d9 70%, #ffb3e6 100%);
-    color: #5E1C45ED;
+    --theme-bg: linear-gradient(135deg, #ffccb3 0%, #ffc4c7 35%, #ffb3d9 70%, #ffb3e6 100%);
+    --theme-text: #5E1C45ED;
+    --theme-shift-from: linear-gradient(135deg, #ffd9c8 0%, #ffc8d4 40%, #ffcaef 100%);
+    --theme-shift-mid: linear-gradient(135deg, #ffbba0 0%, #ffb2c4 38%, #ffa8df 100%);
 }
 
 body.theme-math {
-    background: linear-gradient(135deg, #e2d8f0 0%, #daabe0 35%, #8beffc 100%);
-    color: #662a81f5;
+    --theme-bg: linear-gradient(135deg, #e2d8f0 0%, #daabe0 35%, #8beffc 100%);
+    --theme-text: #662a81f5;
+    --theme-shift-from: linear-gradient(135deg, #d3d9ff 0%, #cfbdf2 45%, #97f8ea 100%);
+    --theme-shift-mid: linear-gradient(135deg, #dce1ff 0%, #c8b2ef 42%, #83efe0 100%);
 }
 
 body.theme-trading {
-    background: linear-gradient(135deg, #f99b8a 0%, #e4b182 25%, #cfc67a 50%, #b9db72 75%, #a4f16a 100%);
-    color: #0a492b;
+    --theme-bg: linear-gradient(135deg, #f99b8a 0%, #e4b182 25%, #cfc67a 50%, #b9db72 75%, #a4f16a 100%);
+    --theme-text: #0a492b;
+    --theme-shift-from: linear-gradient(135deg, #ff9c8e 0%, #efb57a 30%, #d8cc70 60%, #86e086 100%);
+    --theme-shift-mid: linear-gradient(135deg, #ff8e81 0%, #ecaa6b 30%, #cadc6e 60%, #73d99b 100%);
 }
 
 body.theme-random {
-    background: linear-gradient(135deg, #b3e5fc 0%, #fff9c4 100%);
-    color: #06426b9f;
+    --theme-bg: linear-gradient(135deg, #b3e5fc 0%, #fff9c4 100%);
+    --theme-text: #06426b9f;
+    --theme-shift-from: linear-gradient(135deg, #9ed9ff 0%, #ffe7a8 100%);
+    --theme-shift-mid: linear-gradient(135deg, #8fd4ff 0%, #ffde92 100%);
+}
+
+body.theme-shift {
+    animation: themeShift 1.15s ease both;
+}
+
+@keyframes themeShift {
+    0% {
+        background: var(--theme-shift-from, var(--theme-bg));
+    }
+    55% {
+        background: var(--theme-shift-mid, var(--theme-bg));
+    }
+    100% {
+        background: var(--theme-bg);
+    }
 }
 
 /* ---- Layout ---- */
 .page {
-    max-width: 1100px;
+    max-width: 1040px;
     margin: 0 auto;
 }
 
@@ -40,7 +65,7 @@ body.theme-random {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 28px 40px;
+    padding: 24px 32px;
 }
 
 .brand {
@@ -97,7 +122,7 @@ body.theme-random .tab.is-active { color: #5d8d9c; }
 
 /* ---- Main content ---- */
 .main {
-    padding: 40px 40px 100px;
+    padding: 28px 32px 84px;
     transition: opacity 0.32s ease, transform 0.32s ease;
 }
 
@@ -134,7 +159,7 @@ body.theme-random .tab.is-active { color: #5d8d9c; }
     font-weight: 500;
     line-height: 1.04;
     letter-spacing: -0.02em;
-    margin: 0 0 22px;
+    margin: 0 0 16px;
     max-width: 16ch;
 }
 
@@ -143,23 +168,35 @@ body.theme-random .tab.is-active { color: #5d8d9c; }
     line-height: 1.6;
     max-width: 72ch;
     opacity: 0.8;
-    margin: 0 0 48px;
+    margin: 0 0 32px;
+}
+
+.detail-list {
+    margin: 0 0 32px;
+    padding-left: 24px;
+}
+
+.detail-item {
+    font-size: 19px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 8px;
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
+    gap: 16px;
 }
 
 .card {
     position: relative;
-    padding: 26px;
+    padding: 22px;
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(10px);
-    min-height: 150px;
+    min-height: 136px;
     display: flex;
     flex-direction: column;
     /* staggered entrance */
@@ -173,6 +210,36 @@ body.theme-random .tab.is-active { color: #5d8d9c; }
 
 article.card {
     cursor: default;
+}
+
+.definition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+}
+
+.definition-card {
+    min-height: 0;
+    padding: 20px 20px 18px;
+}
+
+.definition-card .card-title {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.definition-card .card-body {
+    font-size: 16px;
+    line-height: 1.55;
+    opacity: 0.76;
+}
+
+.definition-card .card-arrow {
+    display: none;
+}
+
+.definition-card-alt {
+    background: rgba(255, 255, 255, 0.52);
 }
 
 .card:hover {
@@ -225,7 +292,7 @@ article.card {
 
 /* ---- Detail pages ---- */
 .detail {
-    padding: 20px 40px 110px;
+    padding: 14px 32px 72px;
 }
 
 .back-link {
@@ -237,7 +304,7 @@ article.card {
     text-decoration: none;
     color: inherit;
     opacity: 0.7;
-    padding: 8px 16px 8px 12px;
+    padding: 7px 14px 7px 12px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -252,26 +319,59 @@ article.card {
 
 .detail-body {
     max-width: 84ch;
-    margin-top: 36px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.year-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+}
+
+.year-row.full-width {
+    grid-template-columns: 1fr;
+}
+
+.season-section h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 10px;
+}
+
+.season-section ul {
+    margin: 0 0 14px;
+    padding-left: 22px;
+}
+
+.season-section li {
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.78;
+    margin-bottom: 8px;
 }
 
 .detail-body h2 {
     font-family: 'Fraunces', serif;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 500;
     letter-spacing: -0.01em;
-    margin: 40px 0 14px;
+    margin: 24px 0 8px;
 }
 
 .detail-body p {
     font-size: 18px;
     line-height: 1.7;
     opacity: 0.78;
-    margin: 0 0 18px;
+    margin: 0 0 12px;
 }
 
 .detail-body ul {
-    margin: 0 0 18px;
+    margin: 0 0 12px;
     padding-left: 22px;
 }
 
@@ -279,7 +379,7 @@ article.card {
     font-size: 18px;
     line-height: 1.7;
     opacity: 0.78;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 @media (max-width: 560px) {
@@ -292,11 +392,11 @@ article.card {
 .chapter-wrap {
     max-width: 980px;
     margin: 0 auto;
-    padding: 10px 40px 100px;
+    padding: 8px 32px 84px;
 }
 
 .chapter-intro {
-    margin: 0 0 34px;
+    margin: 0 0 26px;
     font-size: 18px;
     line-height: 1.7;
     opacity: 0.82;
@@ -306,7 +406,7 @@ article.card {
 .theorem-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     width: 100%;
 }
 
@@ -335,21 +435,21 @@ article.card {
     background: transparent;
     color: inherit;
     text-align: left;
-    padding: 22px 24px;
+    padding: 18px 20px;
     cursor: pointer;
     font: inherit;
 }
 
 .theorem-toggle-title {
     font-family: 'Fraunces', serif;
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.2;
     margin: 0;
 }
 
 .theorem-toggle-subtitle {
-    margin: 8px 0 0;
-    font-size: 18px;
+    margin: 6px 0 0;
+    font-size: 17px;
     line-height: 1.6;
     opacity: 0.82;
 }
@@ -374,16 +474,16 @@ article.card {
 }
 
 .theorem-panel-inner {
-    padding: 6px 24px 24px;
+    padding: 4px 20px 18px;
 }
 
 .theorem-block {
     border-radius: 12px;
-    padding: 16px 16px 14px;
+    padding: 14px 14px 12px;
 }
 
 .theorem-block + .theorem-block {
-    margin-top: 14px;
+    margin-top: 10px;
 }
 
 .theorem-block-statement {
@@ -416,15 +516,15 @@ article.card {
 
 .theorem-text {
     margin: 0;
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.65;
     opacity: 0.9;
 }
 
 .theorem-proof p {
-    margin: 0 0 14px;
-    font-size: 18px;
-    line-height: 1.7;
+    margin: 0 0 12px;
+    font-size: 17px;
+    line-height: 1.65;
     opacity: 0.86;
 }
 
@@ -443,11 +543,11 @@ article.card {
 
 @media (max-width: 560px) {
     .chapter-wrap {
-        padding: 8px 24px 84px;
+        padding: 8px 20px 72px;
     }
 
     .theorem-toggle {
-        padding: 18px;
+        padding: 16px;
         gap: 14px;
     }
 

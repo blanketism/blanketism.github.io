@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Measure theoretic probability - blanketism</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../style.css">
+	<script>
+		window.MathJax = {
+			tex: {
+				inlineMath: [['$', '$'], ['\\(', '\\)']],
+				displayMath: [['$$', '$$'], ['\\[', '\\]']]
+			},
+			svg: { fontCache: 'global' }
+		};
+	</script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="theme-math">
+	<div class="page">
+		<header class="header">
+			<a href="../index.html" style="text-decoration: none; color: inherit;">
+				<div class="brand">blanket's corner</div>
+			</a>
+			<a class="back-link" href="../index.html#math">&larr; Back</a>
+		</header>
+
+		<main class="detail">
+			<div class="kicker">Probability</div>
+			<h1 class="headline">Measure theoretic probability</h1>
+			<p class="blurb">Measure theoretic probability provides the language used to treat random phenomena in a mathematically precise way. Its basic objects are outcome spaces, sigma algebras, and probability measures, which together allow one to define events, random variables, and limiting operations on a consistent foundation.</p>
+
+			<div class="definition-grid">
+				<article class="card definition-card definition-card-alt">
+					<div class="card-tag">Outcome Space</div>
+					<div class="card-title">$\Omega$</div>
+					<div class="card-body">The outcome space is the set of all possible results of the experiment under study. Each element $\omega \in \Omega$ represents one realization. In finite models, $\Omega$ can often be written down explicitly, while in continuous models it may be much more abstract.</div>
+				</article>
+
+				<article class="card definition-card">
+					<div class="card-tag">Sigma Algebra</div>
+					<div class="card-title">$\mathcal{F}$</div>
+					<div class="card-body">A sigma algebra is a collection of subsets of $\Omega$ that is closed under complements and countable unions. It determines which subsets are measurable and therefore which events can be assigned probabilities in a consistent way.</div>
+				</article>
+
+				<article class="card definition-card definition-card-alt">
+					<div class="card-tag">Event</div>
+					<div class="card-title">Measurable subset</div>
+					<div class="card-body">An event is any set in the sigma algebra $\mathcal{F}$. Informally, it is a question one is allowed to ask about the outcome space. For example, in a coin flip, the event "heads" is the set $\{H\}$.</div>
+				</article>
+
+				<article class="card definition-card">
+					<div class="card-tag">Probability Space</div>
+					<div class="card-title">$(\Omega, \mathcal{F}, \mathbb{P})$</div>
+					<div class="card-body">A probability space is the triple consisting of the outcome space, a sigma algebra, and a probability measure. The measure assigns each event a number in $[0,1]$ and satisfies $\mathbb{P}(\Omega) = 1$ together with countable additivity on disjoint sets.</div>
+				</article>
+
+				<article class="card definition-card definition-card-alt">
+					<div class="card-tag">Random Variable</div>
+					<div class="card-title">Measurable map</div>
+					<div class="card-body">A random variable is a measurable function $X : \Omega \to \mathbb{R}$, or more generally to another measurable space. Measurability guarantees that statements such as $\{X \leq a\}$ are events, which is what makes distributions and expectations well defined.</div>
+				</article>
+
+				<article class="card definition-card">
+					<div class="card-tag">Why It Matters</div>
+					<div class="card-title">A stable framework</div>
+					<div class="card-body">Measure theoretic probability is the language behind conditional expectation, laws of large numbers, central limit theorems, martingales, and stochastic processes. It is the framework that keeps probability coherent when the underlying space is infinite or when limits are involved.</div>
+				</article>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

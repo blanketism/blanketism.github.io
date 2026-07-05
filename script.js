@@ -5,15 +5,25 @@ const THEMES = {
     random: 'theme-random',
 };
 
+const THEME_CLASSES = Object.values(THEMES);
+
 function initHomeTabs() {
     const body = document.body;
     const main = document.getElementById('main');
     const tabs = Array.from(document.querySelectorAll('.tab'));
     const sections = Array.from(document.querySelectorAll('.section-content[data-section]'));
     const pill = document.querySelector('.tab-pill');
+    let themeFadeLayer = document.querySelector('.theme-fade-layer');
 
     if (!body || !main || !pill || tabs.length === 0 || sections.length === 0) {
         return;
+    }
+
+    if (!themeFadeLayer) {
+        themeFadeLayer = document.createElement('div');
+        themeFadeLayer.className = 'theme-fade-layer';
+        themeFadeLayer.setAttribute('aria-hidden', 'true');
+        body.appendChild(themeFadeLayer);
     }
 
     let current = null;
@@ -44,6 +54,22 @@ function initHomeTabs() {
         pill.style.transform = `translateX(${activeTab.offsetLeft - 5}px)`;
     }
 
+    function crossfadeTheme(oldBackground) {
+        if (!themeFadeLayer) return;
+
+        themeFadeLayer.style.background = oldBackground;
+        themeFadeLayer.style.opacity = '1';
+        themeFadeLayer.offsetHeight;
+
+        requestAnimationFrame(() => {
+            themeFadeLayer.style.opacity = '0';
+        });
+
+        window.setTimeout(() => {
+            themeFadeLayer.style.background = '';
+        }, 1200);
+    }
+
     function switchTo(key, instant) {
         if (key === current || !THEMES[key]) return;
 
@@ -51,8 +77,13 @@ function initHomeTabs() {
             history.replaceState(null, '', '#' + key);
         }
 
-        body.classList.remove('theme-math', 'theme-trading', 'theme-about', 'theme-random');
+        const oldBackground = window.getComputedStyle(body).background;
+        body.classList.remove(...THEME_CLASSES);
         body.classList.add(THEMES[key]);
+
+        if (!instant) {
+            crossfadeTheme(oldBackground);
+        }
 
         const activeTab = tabs.find((tab) => tab.dataset.tab === key);
         tabs.forEach((tab) => tab.classList.toggle('is-active', tab === activeTab));
